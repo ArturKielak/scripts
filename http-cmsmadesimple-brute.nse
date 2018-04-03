@@ -16,7 +16,7 @@ stored using the credentials library.
 -- nmap -sV --script http-cmsmadesimple-brute <target>
 -- nmap -sV --script http-cmsmadesimple-brute
 --   --script-args 'userdb=users.txt,passdb=passwds.txt,http-cmsmadesimple-brute.hostname=domain.com,
---                  http-cmsmadesimple-brute.threads=3,brute.firstonly=true' <target>
+--                  http-cmsmadesimple-brute.threads=1,brute.firstonly=true' <target>
 --
 -- @output
 -- PORT     STATE SERVICE REASON
@@ -35,7 +35,7 @@ stored using the credentials library.
 -- @args http-cmsmadesimple-brute.hostname sets the host header in case of virtual hosting
 -- @args http-cmsmadesimple-brute.username sets the http-variable name that holds the username used to authenticate. Default: log
 -- @args http-cmsmadesimple-brute.password sets the http-variable name that holds the password used to authenticate. Default: pwd
--- @args http-cmsmadesimple-brute.threads sets the number of threads. Default: 3
+-- @args http-cmsmadesimple-brute.threads sets the number of threads. Default: 1
 --
 -- Other useful arguments when using this script are:
 -- * http.useragent = String - User Agent used in HTTP requests
@@ -69,8 +69,8 @@ local getValue = function (cookies, key, counter)
   if (counter > 0) then
     local i = 0
     while i < counter do
-        first = string.find(cookies, key, first + 1)
-        i = i + 1
+      first = string.find(cookies, key, first + 1)
+      i = i + 1
     end
     first = string.find(cookies, key)
     first = string.find(cookies, key, first + 1)
